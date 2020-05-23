@@ -22,6 +22,7 @@ def get_models(vocab_size,  # 词典大小
                n_class=10,  # 类别个数
                seq_len=38,  # 句子长度
                device=None):  # 设备
+    """ 获取所有需要训练的模型 """
 
     if device is None:
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -36,17 +37,20 @@ def get_models(vocab_size,  # 词典大小
 
 if __name__ == '__main__':
 
-    c2i = get_vocab()
-    class_ = get_classs()
+    # 本项目的是基于字的，没有基于词
+
+    c2i = get_vocab()   # 获取词典
+    class_ = get_classs()  # 获取数据集的类别
 
     max_len_ = 38
-    n_class_ = len(class_)
-    vocab_size_ = len(c2i)
+    n_class_ = len(class_)  # 类别的数量
+    vocab_size_ = len(c2i)  # 词典大小
     epochs = 100  # 训练周期
     stop_patience = 5   # 提前终止周期（当验证集损失函数连续 stop_patience 个周期没有减少小于最小值时终止训练）
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+    # 获取数据集，同时创建迭代器
     train_samples = load_dataset('train', max_len=max_len_)
     dev_samples = load_dataset('dev', max_len=max_len_)
     train_iter = DataIter(train_samples)
@@ -57,9 +61,11 @@ if __name__ == '__main__':
                         seq_len=max_len_,  # 句子长度
                         device=device)
 
+    # 创建日志
     log_path = os.path.join(log_dir, f"{time.strftime('%Y-%m-%d_%H_%M')}.log")
     log = create_log(path=log_path)  # 获取日志文件
 
+    # 训练所有的样本
     for model in models:
         train(model,  # 需要训练的模型
               train_iter,  # 训练数据迭代器）
