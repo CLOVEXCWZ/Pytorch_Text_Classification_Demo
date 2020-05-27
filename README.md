@@ -1,5 +1,11 @@
 # Pytorch 文本(短文本)分类任务 Demo
 
+
+
+**长文本分类demo可点击前往[Pytorch_LongText_Classification_Demo](https://github.com/CLOVEXCWZ/Pytorch_LongText_Classification_Demo)**
+
+
+
 ​	本demo是在学习和练习文本分类的过程中记录下来的一个demo。主要是温习和练习一些基本的文本分类神经网络。文档里面实现的方法基本都有详细的说明，主要是方便后期查看。
 
 ​	本demo主要参考**[ Chinese-Text-Classification-Pytorch](https://github.com/649453932/Chinese-Text-Classification-Pytorch)** 实现，用到的网络以及数据集都是基于作者的项目的，若想看原滋原味的可点击链接移步到原项目。
